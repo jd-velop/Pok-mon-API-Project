@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* makes sizing elements easier. */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+.note {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* responsive grid layout, min width 1fr, max 2fr. thanks, https://css-tricks.com/auto-sizing-columns-css-grid-auto-fill-vs-auto-fit/ */
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    background: #fbfbfb;
+    border-radius: 10px; /* rounded corners. */
+    box-shadow: 0 12px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 30px 20px;
+    transition: 0.25s;
+}
+
+.card img {
+    display: block; /* removes small gap below image */
+    width: 100%;
+    border-radius: 4px;
+    margin: 20px auto; /* auto left and right margin centers the image */
+    transition: 0.5s;
+}
+
+.card:hover {
+    box-shadow: 0 16px 12px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    transform: translateY(-10px);
+}
+
+.card:active {
+    transform: translateY(0px);
+    box-shadow: 0 8px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hp {
+    width: 60px;
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 4px 0 3px 0;
+    border-radius: 7px;
+    margin-left: auto;
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.poke-name {
+    text-align: center;
+    font-weight: 600;
+}
+
+.types {
+    display: flex;
+    justify-content: space-around; /* space-around puts even space around each item */
+    margin: 20px 0;
+}
+
+.hp span, .types span {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.types span {
+    padding: 5px 20px;
+    border-radius: 20px;
+    color: #fff;
+}
+
+.card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.card-bottom p{
+    color: #404060;
+}
+
+.btn {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 14px;
+    background: #009aff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s; /* smooth transition for background color on hover */
+}
+
+.btn:hover {
+    background: #007acc;
+}
+
+.btn:active {
+    background: #005aaa; /* darker blue when button is clicked */
+    scale: 0.9;
+}
+
+.card h3 {
+    margin: 10px 0 5px 0;
+    font-size: 18px;
+    color: #333;
+}
