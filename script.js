@@ -1,9 +1,8 @@
 // TODO: add hover effect to cards
-// TODO: on click of card, play cry sound, and show more info (height, weight, abilities, etc.)
+// TODO: on click of card show more info (height, weight, abilities, etc.)
 // TODO: add pokeball spinner while loading
 // TODO: add search functionality
 // TODO: add mega evolution functionality
-// TODO: add shiny functionality (low chance of spawning shiny, play sound effect on spawn and sparkle animation when viewed)
 // TODO: make page look nicer
 // TODO: add legacy cry toggle
 
@@ -56,7 +55,7 @@ const fetchPokeData = async () => {
 };
 
 let generateCard = (data) => {
-    let isShiny = Math.random() < 0.01; // 1% chance to be shiny
+    let isShiny = Math.random() < 0.1; // 10% chance to be shiny
 
     const pokeName = (data.name.charAt(0).toUpperCase() + data.name.slice(1)).replace(/-([a-z])/g, (hyphen, nextLetter) => '-' + nextLetter.toUpperCase()); /* capitalize first letter and letters after hyphens. world's best one-liner! regex used */
     const pokeSprite = isShiny ? data.sprites.other.home.front_shiny : data.sprites.other.home.front_default;
