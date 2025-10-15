@@ -31,6 +31,8 @@ const typeColor = {
 	steel: '#B7B7CE',
 	fairy: '#D685AD'
 }
+const shinySparkle = new Audio('assets/shiny.wav');
+shinySparkle.volume = 0.1;
 
 const fetchPokeData = async () => {
     try {
@@ -54,14 +56,23 @@ const fetchPokeData = async () => {
 };
 
 let generateCard = (data) => {
+    let isShiny = Math.random() < 0.01; // 1% chance to be shiny
+
     const pokeName = (data.name.charAt(0).toUpperCase() + data.name.slice(1)).replace(/-([a-z])/g, (hyphen, nextLetter) => '-' + nextLetter.toUpperCase()); /* capitalize first letter and letters after hyphens. world's best one-liner! regex used */
-    const pokeSprite = data.sprites.other.home.front_default;
+    const pokeSprite = isShiny ? data.sprites.other.home.front_shiny : data.sprites.other.home.front_default;
 
     const statHp = data.stats[0].base_stat;
     const statAttack = Math.floor((data.stats[1].base_stat+data.stats[3].base_stat/2)); /* average of attack and special attack */
     const statDefense = Math.floor((data.stats[2].base_stat+data.stats[4].base_stat/2)); /* average of defense and special defense */
     const statSpeed = data.stats[5].base_stat;
     const pokeCry = new Audio(data.cries.legacy ? data.cries.legacy : data.cries.latest);
+
+    if (isShiny) {
+        console.log(`${pokeName} is shiny!`);
+        shinySparkle.currentTime = 0;
+        shinySparkle.play();
+    }
+
     pokeCry.volume = 0.25;
 
     const card = document.createElement("div");
@@ -89,7 +100,7 @@ let generateCard = (data) => {
         `;
 
     appendCardTypes(data.types, card);
-    styleCard(data.types, card);
+    styleCard(data.types, card, isShiny);
 
     container.appendChild(card);
 
@@ -97,6 +108,10 @@ let generateCard = (data) => {
     card.addEventListener("click", () => {
         pokeCry.currentTime = 0;
         pokeCry.play();
+        if (isShiny) {
+            shinySparkle.currentTime = 0;
+            shinySparkle.play();
+        }
     });
 };
 
@@ -108,12 +123,13 @@ let appendCardTypes = (types, card) => {
     });
 };
 
-let styleCard = (types, card) => {
+let styleCard = (types, card, isShiny) => {
     let cardColor = typeColor[types[0].type.name];
     card.style.background = `radial-gradient(circle at 50% 0%, ${cardColor} 36%, #ffffff 36%)`;
     card.querySelectorAll(".types span").forEach((type) => {
         type.style.backgroundColor = typeColor[type.textContent];
     });
+    card.style.boxShadow = isShiny ? `0 0 15px 5px gold` : `0 12px 8px rgba(0, 0, 0, 0.2)`;
 };
 
 fetchButton.addEventListener("click", fetchPokeData);
