@@ -5,42 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokémon API Project</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="assets/pokeball.png" />
   </head>
   <body>
-    <h1>JD Pokémon API Project</h1>
-
+    <header>
+        <nav>
+            <h1>JD Pokemon API Project</h1>
+            <form action="">
+                <input type="text" placeholder="Search for Pokemon..." id="search-box" />
+                <button type="submit" id="search-button">Search</button>
+            </form>
+        </nav>
+    </header>
     <section class="note">
       <p>
-        This project fetches data from the
-        <a href="https://pokeapi.co/" target="_blank"
-          >PokéAPI</a
-        >
-        and displays information about random Pokémon.
+        This website fetches data from
+        <a href="https://pokeapi.co/" target="_blank">PokéAPI</a>
+        and displays information about 24 random Pokémon in form of a card.
       </p>
       <p>
-        Click the button below to fetch and display random Pokémon cards.
+        Click the button below to fetch and display random Pokémon cards, or search for a Pokémon by name.
       </p>
       <p>
-        <br />
-        <em>Future Improvements:</em>
-        <br />
-        - on click of card show more info (height, weight, abilities, etc.)
-        <br />
-        - add pokeball spinner while loading
-        <br />
-        - add search functionality
-        <br />
-        - add mega evolution functionality
-        <br />
-        - make page look nicer
+        Click a card to hear the Pokémon's cry!
       </p>
+      <p>If you're lucky, you might find a shiny (1% chance!)!</p>
     </section>
 
     <button class="btn" id="fetch-button">Fetch Pokémon</button>
 
+    <div class="loader" id="loader" style="display: none">
+      <img src="assets/pokeball.png" height="50" alt="Loading..." />
+      <p> Fetching ... </p>
+    </div>
+
+    <div class="shiny-container" id="shiny-container"></div>
+
     <div class="container" id="card"></div>
 
     <script src="script.js"></script>
-    
   </body>
 </html>

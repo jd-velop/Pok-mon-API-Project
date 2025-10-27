@@ -1,131 +1,269 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* makes sizing elements easier. */
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* makes sizing elements easier. */
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 body {
-    background-color: #f0f0f0;
-    text-align: center;
-    padding: 20px;
+  background-color: #f0f0f0;
+  text-align: center;
+  padding: 20px;
 }
 
-h1 {
-    color: #333;
+header nav {
+  background-color: #005aaa;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+}
+
+header nav h1 {
+  color: #f0f0f0;
+}
+
+header nav form {
+  display: flex;
+  justify-content: center;
+}
+
+form input[type="text"] {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+form input[type="text"],
+button[type="submit"] {
+  border: none;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+form button[type="submit"] {
+  background-color: #009aff;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+form button[type="submit"]:hover {
+  background-color: #007acc;
 }
 
 .note {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #666;
-    background-color: #e0e0e0;
-    border-radius: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 14px;
+  color: #666;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+}
+
+.shiny-container {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.shiny {
+  opacity: 0.9;
+  background-color: gold;
+  color: #fafafa;
+  font-weight: 600;
+  font-size: 20px;
+  padding: 10px 15px;
+  border-radius: 100px;
+  cursor: pointer;
+  pointer-events: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: 0.2s ease;
+  animation: popupEnterFromBottom 0.5s ease-out;
+}
+
+.highlight {
+  background-color: #ffdd57;
+  box-shadow: 0 0 15px 5px #ffdd57;
+  box-shadow: 0 16px 12px rgba(0, 0, 0, 0.3);
+  z-index: 15;
+  animation: highlightAnim 2s ease;
+}
+
+.shiny:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes highlightAnim {
+  0% {
+    box-shadow: 0 0 15px 5px #ffdd57;
+    scale: 1;
+  }
+  50% {
+    box-shadow: 0 0 100px 10px #ffdd57;
+    scale: 1.1;
+  }
+  100% {
+    box-shadow: 0 0 15px 5px #ffdd57;
+    scale: 1;
+  }
+}
+
+@keyframes popupEnterFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 0.9;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popupFadeOut {
+  0% {
+    opacity: 0.9;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.8);
+  }
+}
+
+.shiny.fade-out {
+  animation: popupFadeOut 0.3s ease-out forwards;
+}
+
+.loader {
+  margin: 20px auto;
+}
+
+.loader img {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* responsive grid layout, min width 1fr, max 2fr. thanks, https://css-tricks.com/auto-sizing-columns-css-grid-auto-fill-vs-auto-fit/ */
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
+  display: grid; /* responsive grid layout, min width 1fr, max 2fr. thanks, https://css-tricks.com/auto-sizing-columns-css-grid-auto-fill-vs-auto-fit/ */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-items: center;
+  gap: 20px;
+  margin-top: 20px;
 }
 
 .card {
-    background: #fbfbfb;
-    border-radius: 10px; /* rounded corners. */
-    text-align: center;
-    padding: 30px 20px;
-    transition: 0.25s;
+  background: #fbfbfb;
+  border-radius: 10px; /* rounded corners. */
+  text-align: center;
+  padding: 30px 20px;
+  transition: 0.25s;
 }
 
 .card img {
-    display: block; /* removes small gap below image */
-    width: 100%;
-    border-radius: 4px;
-    margin: 20px auto; /* auto left and right margin centers the image */
-    transition: 0.5s;
+  display: block; /* removes small gap below image */
+  width: 100%;
+  border-radius: 4px;
+  margin: 20px auto; /* auto left and right margin centers the image */
+  transition: 0.5s;
 }
 
 .card:hover {
-    box-shadow: 0 16px 12px rgba(0, 0, 0, 0.3);
-    z-index: 10;
-    transform: translateY(-10px);
+  box-shadow: 0 16px 12px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  transform: translateY(-10px);
 }
 
 .card:active {
-    transform: translateY(0px);
-    box-shadow: 0 8px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(0px);
+  box-shadow: 0 8px 6px rgba(0, 0, 0, 0.1);
 }
 
 .hp {
-    width: 60px;
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: center;
-    padding: 4px 0 3px 0;
-    border-radius: 7px;
-    margin-left: auto;
-    font-weight: 400;
-    font-size: 18px;
+  width: 60px;
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 4px 0 3px 0;
+  border-radius: 7px;
+  margin-left: auto;
+  font-weight: 400;
+  font-size: 18px;
 }
 
 .poke-name {
-    text-align: center;
-    font-weight: 600;
+  text-align: center;
+  font-weight: 600;
 }
 
 .types {
-    display: flex;
-    justify-content: space-around; /* space-around puts even space around each item */
-    margin: 20px 0;
+  display: flex;
+  justify-content: space-around; /* space-around puts even space around each item */
+  margin: 20px 0;
 }
 
-.hp span, .types span {
-    font-size: 12px;
-    letter-spacing: 0.5px;
-    font-weight: 600;
+.hp span,
+.types span {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  font-weight: 600;
 }
 
 .types span {
-    padding: 5px 20px;
-    border-radius: 20px;
-    color: #fff;
+  padding: 5px 20px;
+  border-radius: 20px;
+  color: #fff;
 }
 
 .card-bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
 }
 
-.card-bottom p{
-    color: #404060;
+.card-bottom p {
+  color: #404060;
 }
 
 .btn {
-    margin-top: 20px;
-    padding: 10px 15px;
-    font-size: 14px;
-    background: #009aff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.2s; /* smooth transition for background color on hover */
+  margin-top: 20px;
+  padding: 10px 15px;
+  font-size: 14px;
+  background: #009aff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s; /* smooth transition for background color on hover */
 }
 
 .btn:hover {
-    background: #007acc;
+  background: #007acc;
 }
 
 .btn:active {
-    background: #005aaa; /* darker blue when button is clicked */
-    scale: 0.9;
+  background: #005aaa; /* darker blue when button is clicked */
+  scale: 0.9;
 }
 
 .card h3 {
-    margin: 10px 0 5px 0;
-    font-size: 18px;
-    color: #333;
+  margin: 10px 0 5px 0;
+  font-size: 18px;
+  color: #333;
 }
